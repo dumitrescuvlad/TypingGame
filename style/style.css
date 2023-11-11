@@ -41,6 +41,7 @@ div#game{
     line-height:35px;
     height:105px;
     overflow:hidden;
+    position:relative;
 }
 #words{
     filter:blur(5px);
