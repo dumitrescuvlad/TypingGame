@@ -86,9 +86,9 @@ div.words{
     width: 2px;
     height: 1.6rem;
     background: var(--primaryColor);
-    position:fixed;
-    top: 198px;
-    left: 18px;
+    position:absolute;
+    top: 0;
+    left:0;
     animation: blink .3s infinite;
 }
 #game:focus #cursor{
