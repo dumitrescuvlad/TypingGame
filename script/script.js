@@ -11,7 +11,7 @@ function removeClass(el, name){
 
 function randomWord(){
     const randomIndex = Math.ceil(Math.random() * wordsCount);
-    return words[randomIndex];
+    return words[randomIndex - 1];
 }
 
 function formatWord(words){
@@ -31,7 +31,25 @@ document.getElementById('game').addEventListener('keyup', ev=> {
     const key = ev.key;
     const currentLetter = document.querySelector('.letter.current');
     const expected = currentLetter.innerHTML;
+    const isLetter = key.length === 1 && key !== ' ';
+    const isSpace = key === ' ';
     console.log({key,expected});
+    if (isLetter) {
+        if (currentLetter){
+            addClass(currentLetter, key === expected ? 'correct' : 'incorrect');
+            removeClass(currentLetter, 'current');
+            addClass(currentLetter.nextSibling, 'current');
+        }
+    }
+    if(isSpace){
+        if(expected !== ' '){
+            const lettersToInvalidate = [...document.querySelectorAll('.word.current .letter:not(.correct)')];
+            lettersToInvalidate.forEach(letter => {
+                addClass(letter, 'incorrect');
+            })
+
+        }
+    }
 })
 
 newGame();
